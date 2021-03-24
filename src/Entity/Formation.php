@@ -37,10 +37,10 @@ class Formation
      */
     private $fin;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Formations")
+     * @ORM\Column(type="integer")
      */
+
     private $id_user;
 
     public function getId(): ?int
