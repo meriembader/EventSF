@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Evenement;
+use App\Entity\User;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,11 +11,75 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/evenement")
  */
 class EvenementController extends AbstractController
 {
+
+    /**
+     * @Route("/calendarA/{id}", name="evenement_indexA", methods={"GET"})
+     */
+    public function indexA(EvenementRepository $evenementRepository, User $id )
+
+    {
+
+        $events = $evenementRepository->findBy(['id_user' => $id->getId()]);
+
+        $rdvs = [];
+
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'id_user'=> $event->getIdUser(),
+                'start' => $event->getDebut()->format('Y-m-d H:i:s'),
+                'end' => $event->getFin()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitre(),
+                'descp' => $event->getDescp(),
+                'allDay' => $event->getAllDay(),
+
+            ];
+        }
+
+        $data = json_encode($rdvs);
+
+        return $this->render('evenement/calendar.html.twig', compact('data'));
+    }
+
+    /**
+     * @Route("/calendar", name="evenement_indexB", methods={"GET"})
+     */
+    public function indexB(EvenementRepository $evenementRepository)
+
+    {
+
+        $events = $evenementRepository->findAll();
+
+        $rdvs = [];
+
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'id_user'=> $event->getIdUser(),
+                'start' => $event->getDebut()->format('Y-m-d H:i:s'),
+                'end' => $event->getFin()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitre(),
+                'descp' => $event->getDescp(),
+                'allDay' => $event->getAllDay(),
+
+            ];
+        }
+
+        $data = json_encode($rdvs);
+
+        return $this->render('evenement/calendar.html.twig', compact('data'));
+    }
+
+
+
+
+
     /**
      * @Route("/", name="evenement_index", methods={"GET"})
      */
