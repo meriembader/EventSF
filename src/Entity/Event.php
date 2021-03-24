@@ -23,12 +23,12 @@ class Event
     private $titre;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $debut;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $fin;
 
@@ -38,7 +38,7 @@ class Event
     private $descp;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
     private $all_day;
 

@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Formation;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +17,40 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class EventController extends AbstractController
 {
+
+
+    /**
+     * @Route("/calendarA/{id}", name="event_indexA", methods={"GET"})
+     */
+    public function indexA(EventRepository $eventRepository, Formation $id )
+
+    {
+/*
+        $events = $eventRepository->findBy(['id_user' => $id->getId()]);
+
+        $rdvs = [];
+
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'user_id'=> $event->getIdUser(),
+                'start' => $event->getDebut()->format('Y-m-d H:i:s'),
+                'end' => $event->getFin()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitre(),
+                'descp' => $event->getDescp(),
+                'allDay' => $event->getAllDay(),
+
+            ];
+        }
+
+        $data = json_encode($rdvs);
+
+        return $this->render('event/calendar.html.twig', compact('data'));*/
+    }
+
+
+
+
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
