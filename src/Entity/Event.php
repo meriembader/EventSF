@@ -42,8 +42,9 @@ class Event
      */
     private $all_day;
 
+
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Events")
      */
     private $id_user;
 
