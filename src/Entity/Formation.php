@@ -36,7 +36,6 @@ class Formation
      * @ORM\Column(type="datetime")
      */
     private $fin;
-
     /**
      * @ORM\Column(type="integer")
      */

@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/evenement")
@@ -83,11 +83,27 @@ class EvenementController extends AbstractController
     /**
      * @Route("/", name="evenement_index", methods={"GET"})
      */
-    public function index(EvenementRepository $evenementRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
+
+        $evenements = $this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->findAll();
+
+        // Paginate the results of the query
+        $evenements = $paginator->paginate(
+        // Doctrine Query, not results
+            $evenements,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
         return $this->render('evenement/index.html.twig', [
-            'evenements' => $evenementRepository->findAll(),
+            'evenements' => $evenements,
         ]);
+
+
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Formation;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,11 +21,28 @@ class FormationController extends AbstractController
     /**
      * @Route("/", name="formation_index", methods={"GET"})
      */
-    public function index(FormationRepository $formationRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
+
+        $formations = $this->getDoctrine()
+            ->getRepository(Formation::class)
+            ->findAll();
+
+        // Paginate the results of the query
+        $formations = $paginator->paginate(
+        // Doctrine Query, not results
+            $formations,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
         return $this->render('formation/index.html.twig', [
-            'formations' => $formationRepository->findAll(),
+            'formations' => $formations,
         ]);
+
+
+
     }
 
 
