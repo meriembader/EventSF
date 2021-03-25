@@ -28,20 +28,21 @@ class FormationController extends AbstractController
     }
 
 
+    /**
+     * @Route("/listFPDF", name="formation_listPdf", methods={"GET"}, requirements={"id":"\d+"})
+     */
 
-
-    public function indexpdf(FormationRepository $formationRepository): Response
+    public function indexpdf(): Response
     {    // Configure Dompdf according to your needs
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
 
         // Instantiate Dompdf with our options
         $dompdf = new Dompdf($pdfOptions);
-
-
         $formations = $this->getDoctrine()
             ->getRepository(Formation::class)
             ->findAll();
+
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('formation/listFormationPDF.html.twig', [

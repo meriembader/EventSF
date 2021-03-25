@@ -42,6 +42,7 @@
                 <td>{{ evenement.allDay ? 'Yes' : 'No' }}</td>
                 <td>{{ evenement.idUser }}</td>
                 <td>
+
                     <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
                     <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
                 </td>

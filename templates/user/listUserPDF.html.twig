@@ -1,0 +1,36 @@
+{% block container %}
+<h4>Liste des Utilisateurs</h4>
+<br>
+<br>
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+
+
+        </tr>
+    {% else %}
+
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
