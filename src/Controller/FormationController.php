@@ -19,8 +19,8 @@ use Dompdf\Options;
 class FormationController extends AbstractController
 {
     /**
-     * @Route("/", name="formation_index", methods={"GET"})
-     */
+ * @Route("/", name="formation_index", methods={"GET"})
+ */
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
 
@@ -38,6 +38,34 @@ class FormationController extends AbstractController
             5
         );
         return $this->render('formation/index.html.twig', [
+            'formations' => $formations,
+        ]);
+
+
+
+    }
+
+
+    /**
+     * @Route("/indexF", name="formation_indexF", methods={"GET"})
+     */
+    public function indexF(Request $request, PaginatorInterface $paginator): Response
+    {
+
+        $formations = $this->getDoctrine()
+            ->getRepository(Formation::class)
+            ->findAll();
+
+        // Paginate the results of the query
+        $formations = $paginator->paginate(
+        // Doctrine Query, not results
+            $formations,
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            5
+        );
+        return $this->render('formation/indexFront.html.twig', [
             'formations' => $formations,
         ]);
 
