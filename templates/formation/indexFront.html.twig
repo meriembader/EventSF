@@ -1,5 +1,4 @@
-{% extends 'layoutBackOffice.html.twig' %}
-
+{% extends 'layoutFrontOffice.html.twig' %}
 {% block title %}Formation index{% endblock %}
 
 {% block container %}
@@ -19,13 +18,13 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>Id</th>
+
                         <th>Nom</th>
                         <th>Filiere</th>
                         <th>Debut</th>
                         <th>Fin</th>
-                        <th>Id_user</th>
-                        <th>actions</th>
+
+
                     </tr>
                     </thead>
 
@@ -33,16 +32,13 @@
 
                     {% for formation in formations %}
                         <tr>
-                            <td>{{ formation.id }}</td>
+
                             <td>{{ formation.nom }}</td>
                             <td>{{ formation.filiere }}</td>
                             <td>{{ formation.debut ? formation.debut|date('Y-m-d') : '' }}</td>
                             <td>{{ formation.fin ? formation.fin|date('Y-m-d') : '' }}</td>
-                            <td>{{ formation.idUser }}</td>
-                            <td>
-                                <a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
-                                <a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
-                            </td>
+
+
                         </tr>
                     {% else %}
                         <tr>

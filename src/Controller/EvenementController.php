@@ -77,6 +77,36 @@ class EvenementController extends AbstractController
     }
 
 
+    /**
+     * @Route("/calendarFront", name="evenement_indexFront", methods={"GET"})
+     */
+    public function indexFront(EvenementRepository $evenementRepository)
+
+    {
+
+        $events = $evenementRepository->findAll();
+
+        $rdvs = [];
+
+        foreach ($events as $event) {
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'id_user'=> $event->getIdUser(),
+                'start' => $event->getDebut()->format('Y-m-d H:i:s'),
+                'end' => $event->getFin()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitre(),
+                'descp' => $event->getDescp(),
+                'allDay' => $event->getAllDay(),
+
+            ];
+        }
+
+        $data = json_encode($rdvs);
+
+        return $this->render('evenement/calendarFrontOffice.html.twig', compact('data'));
+    }
+
+
 
 
 
