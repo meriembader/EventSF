@@ -42,6 +42,8 @@ class Formation
 
     private $id_user;
 
+    protected $captchaCode;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,5 +107,14 @@ class Formation
         $this->id_user = $id_user;
 
         return $this;
+    }
+    public function getCaptchaCode()
+    {
+        return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+        $this->captchaCode = $captchaCode;
     }
 }

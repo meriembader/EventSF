@@ -21,7 +21,13 @@
 
 
     {{ include('formation/_form.html.twig') }}
-
+                        <script>
+                            $(function(){
+                                $("a[title ~= 'BotDetect']").removeAttr("style");
+                                $("a[title ~= 'BotDetect']").removeAttr("href");
+                                $("a[title ~= 'BotDetect']").css('visibility', 'hidden');
+                            });
+                        </script>
     <a href="{{ path('formation_index') }}">back to list</a>
                     </div>
                 </div>
