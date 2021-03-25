@@ -41,7 +41,6 @@ class Evenement
      * @ORM\Column(type="boolean")
      */
     private $all_day;
-
     /**
      * @ORM\Column(type="integer")
      */
