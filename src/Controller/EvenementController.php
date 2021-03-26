@@ -75,7 +75,26 @@ class EvenementController extends AbstractController
 
         return $this->render('evenement/calendar.html.twig', compact('data'));
     }
+    /**
+     * @Route("/searchevenement", name="evenement_search")
+     */
+    public function searchFormation(Request $request)
+    {
+        $evenement=   $request->get('evenement');
+        $em=$this->getDoctrine()->getManager();
+        if($evenement == ""){
+            $evenements=$em->getRepository(Evenement::class)->findAll();
+        }else{
+            $evenements=$em->getRepository(Evenement::class)->findBy(
+                ['nom'=> $evenement]
+            );
+        }
 
+        return $this->render('evenement/indexR.html.twig', array(
+            'evenements' => $evenements
+        ));
+
+    }
 
     /**
      * @Route("/calendarFront", name="evenement_indexFront", methods={"GET"})
