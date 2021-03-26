@@ -94,7 +94,7 @@ class FormationController extends AbstractController
     }
 
     /**
-     * @Route("/searchFronyformation", name="formation_search")
+     * @Route("/searchFrontformation", name="formationF_search")
      */
     public function searchFrontFormation(Request $request)
     {

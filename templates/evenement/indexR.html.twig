@@ -14,7 +14,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">List des evenements</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -47,8 +47,8 @@
                 <td>{{ evenement.idUser }}</td>
                 <td>
 
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">show</a>
+                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -80,5 +80,4 @@
 
 </div>
 
-    <a href="{{ path('evenement_new') }}">Create new</a>
 {% endblock %}

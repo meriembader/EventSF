@@ -43,8 +43,8 @@
                 <td>{{ evenement.idUser }}</td>
                 <td>
 
-                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}">edit</a>
+                    <a href="{{ path('evenement_show', {'id': evenement.id}) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">show</a>
+                    <a href="{{ path('evenement_edit', {'id': evenement.id}) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -76,5 +76,4 @@
 
 </div>
 
-    <a href="{{ path('evenement_new') }}">Create new</a>
 {% endblock %}

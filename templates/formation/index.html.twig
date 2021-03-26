@@ -41,8 +41,8 @@
                             <td>{{ formation.fin ? formation.fin|date('Y-m-d') : '' }}</td>
                             <td>{{ formation.idUser }}</td>
                             <td>
-                                <a href="{{ path('formation_show', {'id': formation.id}) }}">show</a>
-                                <a href="{{ path('formation_edit', {'id': formation.id}) }}">edit</a>
+                                <a href="{{ path('formation_show', {'id': formation.id}) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">show</a>
+                                <a href="{{ path('formation_edit', {'id': formation.id}) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">edit</a>
                             </td>
                         </tr>
                     {% else %}
