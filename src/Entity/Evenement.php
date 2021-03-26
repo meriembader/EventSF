@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EvenementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EvenementRepository::class)
@@ -11,29 +12,37 @@ use Doctrine\ORM\Mapping as ORM;
 class Evenement
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ. ")
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="debut", type="date", nullable=true)
      */
     private $debut;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fin", type="date", nullable=true)
      */
     private $fin;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
      */
     private $descp;
 
@@ -42,10 +51,13 @@ class Evenement
      */
     private $all_day;
     /**
-     * @ORM\Column(type="integer")
+     * @var int
      */
     private $id_user;
-
+    /**
+     * @var string
+     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
+     */
     protected $captchaCode;
 
     public function getId(): ?int
