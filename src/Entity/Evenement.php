@@ -12,37 +12,30 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Evenement
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @var string
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ. ")
+     * @ORM\Column(type="string", length=255)
      */
     private $titre;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="debut", type="date", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $debut;
 
+
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fin", type="date", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $fin;
 
     /**
-     * @var string
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
+     * @ORM\Column(type="string", length=255)
      */
     private $descp;
 
@@ -51,13 +44,10 @@ class Evenement
      */
     private $all_day;
     /**
-     * @var int
+     * @ORM\Column(type="integer")
      */
     private $id_user;
-    /**
-     * @var string
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
-     */
+
     protected $captchaCode;
 
     public function getId(): ?int

@@ -9,38 +9,28 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=FormationRepository::class)
  */
 class Formation
-{
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+{ /**
+ * @ORM\Id
+ * @ORM\GeneratedValue
+ * @ORM\Column(type="integer")
+ */
     private $id;
     /**
-     * @var string
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @var string
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
+     * @ORM\Column(type="string", length=255)
      */
     private $filiere;
-
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="debut", type="date", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $debut;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="fin", type="date", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $fin;
     /**
@@ -48,10 +38,7 @@ class Formation
      */
 
     private $id_user;
-    /**
-     * @var string
-     * @Assert\NotBlank(message="Veuillez renseigner ce champ.")
-     */
+
     protected $captchaCode;
 
     public function getId(): ?int
