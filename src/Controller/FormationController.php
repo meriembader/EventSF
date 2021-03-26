@@ -72,7 +72,26 @@ class FormationController extends AbstractController
 
 
     }
+    /**
+     * @Route("/searchformation", name="formation_search")
+     */
+    public function searchFormation(Request $request)
+    {
+        $formation =   $request->get('formation');
+        $em=$this->getDoctrine()->getManager();
+        if($formation == ""){
+            $formations=$em->getRepository(Formation::class)->findAll();
+        }else{
+            $formations=$em->getRepository(Formation::class)->findBy(
+                ['nom'=> $formation]
+            );
+        }
 
+        return $this->render('formation/indexR.html.twig', array(
+            'formations' => $formations
+        ));
+
+    }
 
     /**
      * @Route("/listFPDF", name="formation_listPdf", methods={"GET"}, requirements={"id":"\d+"})
